@@ -1,24 +1,31 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import user_add from '@/components/student/user_add'
 import login from '@/components/login'
 import admin from '@/components/admin'
 
-// 财务管理路由
-// import general_ledger from '@/components/finance/general_ledger'
-// import financial_flow from '@/components/finance/financial_flow'
-// import student_pay from '@/components/finance/student_pay'
-// import basic_data from '@/components/finance/basic_data'
+// 权限管理路由
+import organization from '@/components/author/organization'
+import user from '@/components/author/user'
+// 项目管理路由
+import project from '@/components/project/project'
+import module from '@/components/project/module'
+import api from '@/components/project/api'
+import environment from '@/components/project/environment'
+
+// 测试管理路由
+import testcase from '@/components/ceshi/case'
+import task from '@/components/ceshi/task'
+import report from '@/components/ceshi/report'
 
 Vue.use(Router)
 
 export default new Router({
-  mode:'history',
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Login',
-      component: login
+      name: 'Admin',
+      component: admin
     },
     {
       path: '/login',
@@ -26,39 +33,71 @@ export default new Router({
       component: login
     },
     {
-      path: '/admin', component:admin,
-      // children : [
-      //   {
-      //     path:'user_add',
-      //     name:'user_add',
-      //     component:user_add,
-      //   },
-      // ]
+      path: '/admin',
+      component: admin,
     },
-    // {
-    //   path: '/finance', component:admin,
-    //   children : [
-    //     {
-    //       path:'general_ledger',
-    //       name:'general_ledger',
-    //       component:general_ledger,
-    //     },
-    //     {
-    //       path:'financial_flow',
-    //       name:'financial_flow',
-    //       component:financial_flow,
-    //     },
-    //     {
-    //       path:'student_pay',
-    //       name:'student_pay',
-    //       component:student_pay,
-    //     },
-    //     {
-    //       path:'basic_data',
-    //       name:'basic_data',
-    //       component:basic_data,
-    //     },
-    //   ]
-    // },
+    {
+      path: '/author',
+      component: admin,
+      children: [
+        {
+          path: 'organization',
+          name: 'organization',
+          component: organization,
+        },
+        {
+          path: 'user',
+          name: 'user',
+          component: user,
+        },
+      ]
+    },
+    {
+      path: '/project',
+      component: admin,
+      children: [
+        {
+          path: 'project',
+          name: 'project',
+          component: project,
+        },
+        {
+          path: 'module',
+          name: 'module',
+          component: module,
+        },
+        {
+          path: 'api',
+          name: 'api',
+          component: api,
+        },
+        {
+          path: 'environment',
+          name: 'environment',
+          component: environment,
+        },
+      ]
+    },
+    {
+      path: '/ceshi',
+      component: admin,
+      children: [
+        {
+          path: 'case',
+          name: 'case',
+          component: testcase,
+        },
+        {
+          path: 'task',
+          name: 'task',
+          component: task,
+        },
+        {
+          path: 'report',
+          name: 'report',
+          component: report,
+        },
+      ]
+    },
   ]
 })
